@@ -6,6 +6,7 @@ using FluentAssertions;
 using DataBelli.Loteria.Dominio;
 using System.Linq;
 using DataBelli.Loteria.Testes.Unitarios.Mocks;
+using NSubstitute;
 
 namespace DataBelli.Loteria.Testes.Unitarios
 {
@@ -43,7 +44,10 @@ namespace DataBelli.Loteria.Testes.Unitarios
         public void DeveIdentifcarVencedoresDoSorteio()
         {
             // Arragnge
-            var jogo = new JogoSena(new SorteadorMock());
+            //var sorteador = new SorteadorMock();
+            var sorteador = Substitute.For<ISorteador>();
+            sorteador.Gerar(6, 1, 60).Returns(new int[] { 1, 2, 3, 4, 5, 6 });
+            var jogo = new JogoSena(sorteador);
             ApostaSena aposta = null;
 
             // Act
