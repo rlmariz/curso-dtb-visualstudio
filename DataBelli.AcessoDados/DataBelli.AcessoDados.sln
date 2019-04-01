@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBelli.AcessoDados.Construtores", "DataBelli.AcessoDados.Construtores\DataBelli.AcessoDados.Construtores.csproj", "{6DF39572-39CB-44F8-9A66-B89F4A6FB437}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBelli.AcessoDados.TesteUnitario", "DataBelli.AcessoDados.TesteUnitario\DataBelli.AcessoDados.TesteUnitario.csproj", "{EA13C7C5-2077-4FA5-A529-9503A4210323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DF39572-39CB-44F8-9A66-B89F4A6FB437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF39572-39CB-44F8-9A66-B89F4A6FB437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF39572-39CB-44F8-9A66-B89F4A6FB437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF39572-39CB-44F8-9A66-B89F4A6FB437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA13C7C5-2077-4FA5-A529-9503A4210323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA13C7C5-2077-4FA5-A529-9503A4210323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA13C7C5-2077-4FA5-A529-9503A4210323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA13C7C5-2077-4FA5-A529-9503A4210323}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA0B8C9F-914F-4EF0-BE07-3F74D41F9A15}
+	EndGlobalSection
+EndGlobal
