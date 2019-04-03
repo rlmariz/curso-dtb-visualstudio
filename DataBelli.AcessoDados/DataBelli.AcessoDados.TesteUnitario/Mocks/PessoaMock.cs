@@ -5,14 +5,15 @@ using DataBelli.AcessoDados.Construtores;
 
 namespace DataBelli.AcessoDados.TesteUnitario.Mocks
 {
-    [TableAttribute("Pessoa")]
+    [Table("Pessoa")]
     public class PessoaMock
     {
         [ColumnAttribute("PessoaId")]
+        [PrimaryKeyAttribute("PessoaId")]
         public string Id { get; set; }
         [ColumnAttribute("Nome")]
         public string Nome {get; set; }
-        [ColumnAttribute("DataNascmento")]
+        [ColumnAttribute("DataNascimento")]
         public DateTime DataNascimento { get; set; }
     }
 

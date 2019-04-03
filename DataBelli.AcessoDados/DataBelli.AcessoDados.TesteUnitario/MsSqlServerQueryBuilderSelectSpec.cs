@@ -6,7 +6,7 @@ using System;
 
 namespace DataBelli.AcessoDados.TesteUnitario
 {
-    public class MsSqlServerQueryBuilderSpec
+    public class MsSqlServerQueryBuilderSelectSpec
     {
         [Fact]
         public void DeveConstruirQuerySelect()
