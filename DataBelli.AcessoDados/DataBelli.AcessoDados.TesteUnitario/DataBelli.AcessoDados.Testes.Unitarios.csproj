@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataBelli.AcessoDados.Construtores\DataBelli.AcessoDados.Construtores.csproj" />
+    <ProjectReference Include="..\DataBelli.AcessoDados.Testes.Comum\DataBelli.AcessoDados.Testes.Comum.csproj" />
   </ItemGroup>
 
 </Project>

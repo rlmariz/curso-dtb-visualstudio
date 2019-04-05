@@ -1,5 +1,5 @@
 using DataBelli.AcessoDados.Construtores;
-using DataBelli.AcessoDados.TesteUnitario.Mocks;
+using DataBelli.AcessoDados.Testes.Comum;
 using Xunit;
 using FluentAssertions;
 using System;
