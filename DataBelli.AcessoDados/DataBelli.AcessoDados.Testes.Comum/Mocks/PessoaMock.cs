@@ -8,8 +8,8 @@ namespace DataBelli.AcessoDados.Testes.Comum
     [Table("Pessoa")]
     public class PessoaMock
     {
-        [ColumnAttribute("PessoaId")]
-        [PrimaryKeyAttribute("PessoaId")]
+        [ColumnAttribute("Id")]
+        [PrimaryKeyAttribute("Id")]
         public int Id { get; set; }
         [ColumnAttribute("Nome")]
         public string Nome {get; set; }

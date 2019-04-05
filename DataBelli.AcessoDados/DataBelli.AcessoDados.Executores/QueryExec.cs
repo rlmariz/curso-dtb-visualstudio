@@ -4,6 +4,7 @@ using DataBelli.AcessoDados.Construtores;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace DataBelli.AcessoDados.Executores
 {
@@ -14,8 +15,12 @@ namespace DataBelli.AcessoDados.Executores
 
         public QueryExec(IQueryBuilder<T> builder)
         {
-            DbProviderFactories.RegisterFactory("MsSqlServer", SqlClientFactory.Instance);
             this.factory = DbProviderFactories.GetFactory("MsSqlServer");
+
+            if(this.factory == null)
+            {
+                throw new Exception("Provider não encontrado.");
+            };
 
             this.builder = builder;
         }
@@ -47,6 +52,8 @@ namespace DataBelli.AcessoDados.Executores
 
             var transaction = conn.BeginTransaction();
 
+            command.Transaction = transaction;
+
             command.ExecuteNonQuery();
 
             transaction.Commit();
@@ -54,9 +61,32 @@ namespace DataBelli.AcessoDados.Executores
             conn.Close();
         }
 
-        public IEnumerable<T> Select(string where)
+        public IEnumerable<T>Select(string where)
         {
-            throw new NotImplementedException();
+            var conn = this.factory.CreateConnection();
+
+            conn.ConnectionString = @"Data Source = 192.168.10.2\SQLEXPRESS; Initial Catalog = CursoVisualStudio; Persist Security Info = True; User ID = sa; Password = 123";
+
+            var command = conn.CreateCommand();
+
+            conn.Open();
+            
+            command.CommandText = builder.BuildSelect(where);
+
+            var reader = command.ExecuteReader();
+            var lista = new List<T>();
+
+            while (reader.Read()){
+                var retorno = (T)typeof(T).GetConstructor(new Type[] { }).Invoke(null);
+
+                foreach (var property in typeof(T).GetProperties())
+                {
+                    property.SetValue(retorno, reader.GetValue(reader.GetOrdinal(property.GetCustomAttribute<ColumnAttribute>().Name)));
+                }
+
+                lista.Add(retorno);
+            }
+            return lista;
         }
     }
 }
