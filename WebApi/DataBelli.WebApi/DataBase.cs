@@ -1,14 +1,12 @@
-﻿using DataBelli.WebApi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DataBelli.WebApi
 {
-
-    public interface IRepositorio
+    public class DataBase
     {
-        Pedido Get(Guid id);
+        public string ConnectionString { get; set; }
     }
 }

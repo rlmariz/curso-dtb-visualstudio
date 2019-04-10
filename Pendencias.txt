@@ -1,2 +1,12 @@
 Implementar BuildUpdate
 Implementar BuildDelete
+-----10/04
+Entidade: Produto
+			Id
+			Nome
+			Categora
+			Cor
+			Origem
+1-Criar Web Api (Criar, Obter por Id, Obter Coleção e Deletaa)
+2-As operação serão refletidas em uma base de dados
+3-Utilizar o compoente DataBelli.AcessoDados através dos recursos de injeção de Dependência.

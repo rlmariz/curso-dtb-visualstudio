@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace DataBelli.WebApi
+namespace DataBell.WebApi.Produto
 {
     public class Startup
     {
@@ -25,10 +24,6 @@ namespace DataBelli.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepositorio), typeof(Repositocio));
-            services.Configure<DataBase>(this.Configuration.GetSection(nameof(DataBase)));
-            //services.AddTransient(typeof(IRepositorio), typeof(Repositocio));
-            //services.AddSingleton(typeof(IRepositorio), typeof(Repositocio));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -39,12 +34,7 @@ namespace DataBelli.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

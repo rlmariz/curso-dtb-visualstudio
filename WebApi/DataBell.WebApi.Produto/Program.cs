@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace DataBelli.WebApi
+namespace DataBell.WebApi.Produto
 {
     public class Program
     {
@@ -19,10 +19,6 @@ namespace DataBelli.WebApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((builderContext, builder) =>
-            {
-                builder.AddJsonFile("settings.json");
-            })
                 .UseStartup<Startup>();
     }
 }

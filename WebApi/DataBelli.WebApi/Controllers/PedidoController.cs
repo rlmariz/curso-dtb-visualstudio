@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataBelli.WebApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace DataBelli.WebApi.Controllers
 {
@@ -12,16 +13,14 @@ namespace DataBelli.WebApi.Controllers
     [ApiController]
     public class PedidoController : ControllerBase
     {
-        IRepositorio repositorio;
+        private readonly IServiceProvider provider;
+        private readonly IOptions<DataBase> dataBaseSettings;
 
-        //public PedidoController(IRepositorio repositorio)
-        //{
-        //    this.repositorio = repositorio;
-        //}
-
-        public PedidoController()
+        public PedidoController(IServiceProvider provider, IOptions<DataBase> dataBaseSettings)
         {
-            this.repositorio = repositorio;
+            this.provider = provider;
+            this.dataBaseSettings = dataBaseSettings;
+            //var connecton = this.dataBaseSettings.Value.ConnectionString;
         }
 
         // GET: api/Pedido
@@ -50,16 +49,39 @@ namespace DataBelli.WebApi.Controllers
 
         // GET: api/Pedido/5
         [HttpGet]
-        [Route("{id:max(10)}")]
-        public PedidoModel Get(int id)
+        //[Route("{id:max(10)}")]
+        [Route("{id}")]
+        public Pedido Get(Guid id)
         {
-            var pedido = new PedidoModel
-            {
-                Data = DateTime.Now,
-                Numero = Guid.NewGuid().ToString(),
-                QuantidadeItens = 10,
-                Obsevacoes = "Obs Pedido"
-            };
+            var repositorio = (IRepositorio)this.provider.GetService(typeof(IRepositorio));
+
+            var pedido = repositorio.Get(id);
+            //var pedido = new PedidoModel
+            //{
+            //    Data = DateTime.Now,
+            //    Numero = Guid.NewGuid().ToString(),
+            //    QuantidadeItens = 10,
+            //    Obsevacoes = "Obs Pedido"
+            //};
+
+            return pedido;
+        }
+
+        [HttpGet]
+        //[Route("{id:max(10)}")]
+        [Route("{id}/itens")]
+        public Pedido GetItens([FromServices] IRepositorio repositorio, Guid id)
+        {
+            //var repositorio = (IRepositorio)this.provider.GetService(typeof(IRepositorio));
+
+            var pedido = repositorio.Get(id);
+            //var pedido = new PedidoModel
+            //{
+            //    Data = DateTime.Now,
+            //    Numero = Guid.NewGuid().ToString(),
+            //    QuantidadeItens = 10,
+            //    Obsevacoes = "Obs Pedido"
+            //};
 
             return pedido;
         }
