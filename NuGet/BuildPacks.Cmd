@@ -1,0 +1,2 @@
+call pack C:\CursoVisualStudio\DataBelli.AcessoDados\DataBelli.AcessoDados.Construtores\DataBelli.AcessoDados.Construtores.csproj
+call pack C:\CursoVisualStudio\DataBelli.AcessoDados\DataBelli.AcessoDados.Executores\DataBelli.AcessoDados.Executores.csproj
