@@ -12,10 +12,12 @@ namespace DataBelli.AcessoDados.Executores
     {
         private readonly IQueryBuilder<T> builder;
         private readonly DbProviderFactory factory;
+        private readonly string connectionString;
 
-        public QueryExec(IQueryBuilder<T> builder)
+        public QueryExec(IQueryBuilder<T> builder, string connectionString)
         {
             this.factory = DbProviderFactories.GetFactory("MsSqlServer");
+            this.connectionString = connectionString;
 
             if(this.factory == null)
             {

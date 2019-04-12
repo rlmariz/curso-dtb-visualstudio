@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataBelli.AcessoDados.Construtores;
+using DataBelli.AcessoDados.Executores;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -26,9 +28,9 @@ namespace DataBell.WebApi.Produto.Controllers
         [HttpGet]
         public IEnumerable<Produto> Get()
         {
-            var repositorio = (IRepositorio)this.provider.GetService(typeof(IRepositorio));
-
-            return repositorio.Get();
+            var builder = (IQueryBuilder<Produto>)this.provider.GetService(typeof(IQueryBuilder<Produto>));
+            var queryExec = (IQueryExec<Produto>)this.provider.GetService(typeof(IQueryExec<Produto>));
+            return queryExec.Select("");
         }
 
         // GET: api/Produto/5
@@ -44,9 +46,11 @@ namespace DataBell.WebApi.Produto.Controllers
         [HttpPost]
         public void Post([FromBody] Produto value)
         {
-            var repositorio = (IRepositorio)this.provider.GetService(typeof(IRepositorio));
-
-            repositorio.Set(value);
+            //var repositorio = (IRepositorio)this.provider.GetService(typeof(IRepositorio));
+            //repositorio.Set(value);
+            var builder = (IQueryBuilder<Produto>)this.provider.GetService(typeof(IQueryBuilder<Produto>));
+            var queryExec = (IQueryExec<Produto>)this.provider.GetService(typeof(IQueryExec<Produto>));
+            queryExec.Insert(value);
         }
 
         // PUT: api/Produto/5

@@ -1,1 +1,1 @@
-dotnet pack %1 --include-source --include-symbols --output "C:\CursoVisualStudio\NuGet" -c Release /p:Version=1.0.0
+dotnet pack %1 --include-source --include-symbols --output "C:\CursoVisualStudio\NuGet" -c Release /p:Version=1.1.0

@@ -13,6 +13,7 @@ namespace DataBelli.AcessoDados.Testes.Integrados
     public class QueryExecSpec : IClassFixture<DbProviderFixture>
     {
         private readonly DbProviderFixture fixture;
+        private readonly string ConnectionString = @"Data Source = 192.168.10.2\SQLEXPRESS; Initial Catalog = CursoVisualStudio; Persist Security Info = True; User ID = sa; Password = 123";
 
         public QueryExecSpec(DbProviderFixture fixture)
         {
@@ -25,7 +26,7 @@ namespace DataBelli.AcessoDados.Testes.Integrados
 
             //Arrange
             var builder = new MsSqlServerQueryBuilder<PessoaMock>();
-            var queryExec = new QueryExec<PessoaMock>(builder);
+            var queryExec = new QueryExec<PessoaMock>(builder, ConnectionString);
             var nome = Guid.NewGuid().ToString();
 
             var pessoa = new PessoaMock
@@ -38,7 +39,7 @@ namespace DataBelli.AcessoDados.Testes.Integrados
             queryExec.Insert(pessoa);
 
             //Assert
-            var repositocio = new RepositorioPessoa(@"Data Source = 192.168.10.2\SQLEXPRESS; Initial Catalog = CursoVisualStudio; Persist Security Info = True; User ID = sa; Password = 123");
+            var repositocio = new RepositorioPessoa(ConnectionString);
             var pessoaCriada = repositocio.Get(nome);
             pessoaCriada.Should().NotBeNull();
             pessoaCriada?.Id.Should().BePositive();
@@ -53,7 +54,7 @@ namespace DataBelli.AcessoDados.Testes.Integrados
 
             //Arrange
             var builder = new MsSqlServerQueryBuilder<PessoaMock>();
-            var queryExec = new QueryExec<PessoaMock>(builder);
+            var queryExec = new QueryExec<PessoaMock>(builder, ConnectionString);
             var pessoas = new List<PessoaMock>();
             var where = new StringBuilder();
 
